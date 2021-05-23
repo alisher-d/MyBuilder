@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "788490040638",
+    "project_id": "mybuilder-459a8",
+    "storage_bucket": "mybuilder-459a8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:788490040638:android:0cbcf35ac802502d35686f",
+        "android_client_info": {
+          "package_name": "uz.texnopos.mybuilder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "788490040638-6j5ua6370s4g31jq4b3mblfqcsc2jtq9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFp5kjRp7OPc4jz_D_0Rw2eiA_0hebQNc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "788490040638-6j5ua6370s4g31jq4b3mblfqcsc2jtq9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
