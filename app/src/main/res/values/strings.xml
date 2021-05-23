@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">My Builder</string>
+    <string name="title_home">Home</string>
+    <string name="title_favorite">Favorite</string>
+    <string name="title_profile">Profil</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_information">Information</string>
+</resources>
