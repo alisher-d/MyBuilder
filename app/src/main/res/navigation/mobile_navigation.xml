@@ -19,12 +19,28 @@
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="uz.texnopos.mybuilder.ui.notifications.ProfileFragment"
+        android:name="uz.texnopos.mybuilder.ui.login.LoginFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_favorite">
+        <action
+            android:id="@+id/action_navigation_profile_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:popUpTo="@id/navigation_home" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_information"
         android:name="uz.texnopos.mybuilder.ui.information.InformationFragment"
         android:label="@string/title_information"
         tools:layout="@layout/fragment_information" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="uz.texnopos.mybuilder.ui.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_navigation_profile"
+            app:destination="@id/navigation_profile"
+            app:popUpTo="@id/navigation_home"
+            />
+    </fragment>
 </navigation>
