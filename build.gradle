@@ -18,8 +18,8 @@ buildscript {
 allprojects {
     repositories {
         google()
-        mavenCentral()
         mavenCentral() // Warning: this repository is going to shut down soon
+        maven {url 'https://io.github.chaosleung'}
     }
 }
 

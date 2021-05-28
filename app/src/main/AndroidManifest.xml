@@ -9,13 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyBuilder">
-        <activity
-            android:name="uz.texnopos.mybuilder.ui.login.RegisterActivity"
-            android:label="@string/title_activity_register">
+        <activity android:name=".MainActivity"
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
 
         </activity>
+        <activity android:name=".VerifyActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.login.RegisterActivity"
+            android:label="@string/title_activity_register"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".LoginActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
             <intent-filter>
