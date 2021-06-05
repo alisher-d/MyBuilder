@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/edit_data_navigation"
+    app:startDestination="@id/homeMainFragment">
+
+    <fragment
+        android:id="@+id/addressFragment"
+        android:name="uz.texnopos.mybuilder.ui.builder.editFragments.AddressFragment"
+        android:label="fragment_address"
+        tools:layout="@layout/fragment_address" />
+    <fragment
+        android:id="@+id/personalInfoFragment"
+        android:name="uz.texnopos.mybuilder.ui.builder.editFragments.PersonalInfoFragment"
+        android:label="fragment_personal_info"
+        tools:layout="@layout/fragment_personal_info" />
+    <fragment
+        android:id="@+id/professionFragment"
+        android:name="uz.texnopos.mybuilder.ui.builder.editFragments.ProfessionFragment"
+        android:label="fragment_profession"
+        tools:layout="@layout/fragment_profession" />
+    <fragment
+        android:id="@+id/selfFragment"
+        android:name="uz.texnopos.mybuilder.ui.builder.editFragments.SelfFragment"
+        android:label="fragment_self"
+        tools:layout="@layout/fragment_self" />
+    <fragment
+        android:id="@+id/homeMainFragment"
+        android:name="uz.texnopos.mybuilder.ui.builder.editFragments.HomeMainFragment"
+        android:label="HomeMainFragment"
+        tools:layout="@layout/fragment_home_main">
+        <action
+            android:id="@+id/action_homeMainFragment_to_personalInfoFragment"
+            app:destination="@id/personalInfoFragment" />
+        <action
+            android:id="@+id/action_homeMainFragment_to_professionFragment"
+            app:destination="@id/professionFragment" />
+        <action
+            android:id="@+id/action_homeMainFragment_to_addressFragment"
+            app:destination="@id/addressFragment" />
+        <action
+            android:id="@+id/action_homeMainFragment_to_selfFragment"
+            app:destination="@id/selfFragment" />
+    </fragment>
+</navigation>

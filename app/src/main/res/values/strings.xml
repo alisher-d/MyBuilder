@@ -25,4 +25,12 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="intr">Introduce your business to your customers. Describe the work you normally undertake and what makes you stand out from other tradespeople. You can always edit this later.</string>
+    <string name="id">id: %1$s</string>
+    <string name="des">This appears near the top of your resume. Impress employers with a strong opening statement that sums up your strengths and experience.</string>
+    <string name="descr">Building Company xizmatlariga xush kelibsiz, bu sizning barcha Santexnika va o\'rnatish ehtiyojlaringizni ta\'minlaydi. Biz sizning ish talabingizni bajarish uchun ajoyib mijozlarga xizmat ko\'rsatish, tezkor, professional, ishonchli va samimiy xodimlarni taqdim etishdan faxrlanadigan innovatsion kompaniya.</string>
+    <string name="savdo_sntexnika_hammom_uchun_jihoz_oshxona_jihozlari_plitka_qo_yish">Savdo <br>Santexnika</br> <br>Hammom uchun jihoz Oshxona jihozlari</br> <br>Plitka qo\'yish</br></string>
+    <string name="title_activity_spalsh">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

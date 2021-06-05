@@ -12,12 +12,11 @@
         android:title="@string/title_favorite" />
 
     <item
-        android:id="@+id/navigation_profile"
+        android:id="@+id/navigation_login"
         android:icon="@drawable/ic_baseline_account_box_24"
         android:title="@string/title_profile" />
     <item
         android:id="@+id/navigation_information"
         android:icon="@drawable/ic_baseline_library_books_24"
         android:title="@string/title_information" />
-
 </menu>

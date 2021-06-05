@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".MainActivity">
 
     <View
         android:id="@+id/topView"
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="48dp"
-        android:text="Already Have an Account?"
+        android:text="The better way to find a builder"
         android:textColor="@android:color/white"
         android:textSize="25sp"
         android:textStyle="bold"
@@ -61,10 +61,10 @@
         android:hint="Phone number"
         app:boxBackgroundColor="@color/white"
         app:boxBackgroundMode="outline"
-        app:boxCornerRadiusBottomEnd="25dp"
-        app:boxCornerRadiusBottomStart="25dp"
-        app:boxCornerRadiusTopEnd="25dp"
-        app:boxCornerRadiusTopStart="25dp"
+        app:boxCornerRadiusBottomEnd="5dp"
+        app:boxCornerRadiusBottomStart="5dp"
+        app:boxCornerRadiusTopEnd="5dp"
+        app:boxCornerRadiusTopStart="5dp"
         app:boxStrokeErrorColor="#D50000"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -93,75 +93,68 @@
         android:textColor="@android:color/white"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:cornerRadius="20dp"
+        app:cornerRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputEmail" />
 
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/or"
-        app:layout_constraintBottom_toTopOf="@id/linearLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
             android:id="@+id/googleLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:contentDescription="@string/google_icon"
-            app:srcCompat="@drawable/google_round" />
-
-        <ImageView
-            android:id="@+id/facebookLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:contentDescription="@string/facebook_icon"
-            app:srcCompat="@drawable/facebook_round" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/loading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/textView7"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnLogin">
-
-        <ProgressBar
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
-            android:backgroundTintMode="src_atop"
-            android:indeterminateTint="@color/black"
-            android:indeterminateTintMode="src_atop" />
-
+            android:contentDescription="@string/google_icon"
+            app:srcCompat="@drawable/google_round"/>
         <TextView
+            android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Please wait..." />
+            android:textSize="18sp"
+            android:padding="8dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Sign in with Google"
+            />
+
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal"
+                android:backgroundTintMode="src_atop"
+                android:indeterminateTint="@color/black"
+                android:indeterminateTintMode="src_atop" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Please wait..." />
+        </LinearLayout>
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

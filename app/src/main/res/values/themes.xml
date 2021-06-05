@@ -13,19 +13,32 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
     <style name="EditTextStyle">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginStart">32dp</item>
         <item name="android:layout_marginEnd">32dp</item>
         <item name="android:drawablePadding">16dp</item>
         <item name="boxBackgroundColor">@color/white</item>
         <item name="boxBackgroundMode">outline</item>
-        <item name="boxCornerRadiusBottomEnd">25dp</item>
-        <item name="boxCornerRadiusBottomStart">25dp</item>
-        <item name="boxCornerRadiusTopStart">25dp</item>
-        <item name="boxCornerRadiusTopEnd">25dp</item>
+        <item name="boxCornerRadiusBottomEnd">5dp</item>
+        <item name="boxCornerRadiusBottomStart">5dp</item>
+        <item name="boxCornerRadiusTopStart">5dp</item>
+        <item name="boxCornerRadiusTopEnd">5dp</item>
         <item name="boxStrokeErrorColor">#D50000</item>
         <item name="errorEnabled">true</item>
+    </style>
+
+    <style name="Theme.MyBuilder.Fullscreen" parent="Theme.MyBuilder">
+        <item name="android:actionBarStyle">@style/Widget.Theme.MyBuilder.ActionBar.Fullscreen
+        </item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+
+    <style name="ThemeOverlay.MyBuilder.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
+        <item name="fullscreenTextColor">@color/light_blue_A200</item>
     </style>
 </resources>
