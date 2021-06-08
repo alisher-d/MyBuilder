@@ -18,6 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import uz.texnopos.mybuilder.ui.builder.BuilderActivity
 import uz.texnopos.mybuilder.R
 import uz.texnopos.mybuilder.databinding.FragmentProfileBinding
+import uz.texnopos.mybuilder.ui.builder.BuilderModel
 
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
@@ -36,8 +37,21 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         val tvPhone=binding.tvPhone
         val signout = binding.signout
         val btnCreateCv = binding.createCV
+        val createNew=binding.createNew
         preferences=requireActivity().getSharedPreferences("username", Activity.MODE_PRIVATE)
-        btnCreateCv.setOnClickListener {
+
+        db.collection("builders").document(mAuth.currentUser!!.uid).get()
+            .addOnCompleteListener {
+                if (it.result!!.exists()){
+                    btnCreateCv.visibility=View.VISIBLE
+                    createNew.visibility=View.GONE
+                }
+                else{
+                    btnCreateCv.visibility=View.INVISIBLE
+                    createNew.visibility=View.VISIBLE
+                }
+            }
+        createNew.setOnClickListener {
         val intent=Intent(context, BuilderActivity::class.java)
             startActivity(intent)
         }

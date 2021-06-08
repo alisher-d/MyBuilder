@@ -3,38 +3,24 @@ package uz.texnopos.mybuilder.ui.builder
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.RadioButton
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import uz.texnopos.mybuilder.JobsModel
+import uz.texnopos.mybuilder.R
 import uz.texnopos.mybuilder.databinding.SelectableJobItemRadiobuttonBinding
 
 class SingleSelectJobsAdapter : RecyclerView.Adapter<SingleSelectJobsAdapter.ItemViewHolder>() {
-private var lastChecked:RadioButton?=null
-    private var lastCheckedPosition=0
+    private var lastChecked: TextView? = null
+
     inner class ItemViewHolder(var binding: SelectableJobItemRadiobuttonBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun populatModel(job: JobsModel, position: Int) {
-        val item=binding.jobName
-            item.text=job.jobName
-            item.isChecked=!job.checkable
-            item.tag=position
-            if (position==0&&models[0].checkable&&item.isChecked){
-                lastChecked=item
-                lastCheckedPosition=0
-            }
-            item.setOnClickListener{
-            val rb=it as RadioButton
-                val clickedPosition=rb.tag
-                if (rb.isChecked){
-                    if (lastChecked!=null){
-                        lastChecked!!.isChecked=false
-                        models[lastCheckedPosition].checkable=false
-                    }
-                    lastChecked=rb
-                    lastCheckedPosition=clickedPosition as Int
-                }
-                else lastChecked=null
-                models[clickedPosition as Int].checkable=rb.isChecked
+        fun populatModel(job: String, position: Int) {
+            val item = binding.jobName
+            item.text = job
+            if (position == 0) lastChecked = item
+            item.setOnClickListener {
+                lastChecked!!.setBackgroundResource(0)
+                item.setBackgroundResource(R.color.title)
+                lastChecked = it as TextView
             }
         }
     }
@@ -48,7 +34,7 @@ private var lastChecked:RadioButton?=null
         this.onClick = onClick
     }
 
-    var models = listOf<JobsModel>()
+    var models = mutableListOf<String>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val binding = SelectableJobItemRadiobuttonBinding
             .inflate(LayoutInflater.from(parent.context), parent, false)
@@ -56,7 +42,7 @@ private var lastChecked:RadioButton?=null
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        holder.populatModel(models[position],position)
+        holder.populatModel(models[position], position)
     }
 
     override fun getItemCount() = models.size

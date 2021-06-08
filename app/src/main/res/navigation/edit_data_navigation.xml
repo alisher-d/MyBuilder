@@ -12,14 +12,18 @@
         tools:layout="@layout/fragment_address" />
     <fragment
         android:id="@+id/personalInfoFragment"
-        android:name="uz.texnopos.mybuilder.ui.builder.editFragments.PersonalInfoFragment"
+        android:name="uz.texnopos.mybuilder.ui.builder.editFragments.personalInfo.PersonalInfoFragment"
         android:label="fragment_personal_info"
         tools:layout="@layout/fragment_personal_info" />
     <fragment
         android:id="@+id/professionFragment"
-        android:name="uz.texnopos.mybuilder.ui.builder.editFragments.ProfessionFragment"
+        android:name="uz.texnopos.mybuilder.ui.builder.editFragments.ProfessionSelectSomeFragment"
         android:label="fragment_profession"
-        tools:layout="@layout/fragment_profession" />
+        tools:layout="@layout/fragment_profession_select_some" >
+        <action
+            android:id="@+id/action_professionFragment_to_professionSelectOneFragment"
+            app:destination="@id/professionSelectOneFragment" />
+    </fragment>
     <fragment
         android:id="@+id/selfFragment"
         android:name="uz.texnopos.mybuilder.ui.builder.editFragments.SelfFragment"
@@ -27,7 +31,7 @@
         tools:layout="@layout/fragment_self" />
     <fragment
         android:id="@+id/homeMainFragment"
-        android:name="uz.texnopos.mybuilder.ui.builder.editFragments.HomeMainFragment"
+        android:name="uz.texnopos.mybuilder.ui.builder.editFragments.homeMain.HomeMainFragment"
         android:label="HomeMainFragment"
         tools:layout="@layout/fragment_home_main">
         <action
@@ -43,4 +47,9 @@
             android:id="@+id/action_homeMainFragment_to_selfFragment"
             app:destination="@id/selfFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/professionSelectOneFragment"
+        android:name="uz.texnopos.mybuilder.ui.builder.editFragments.ProfessionSelectOneFragment"
+        android:label="ProfessionSelectOneFragment"
+        tools:layout="@layout/fragment_profession_select_one"/>
 </navigation>

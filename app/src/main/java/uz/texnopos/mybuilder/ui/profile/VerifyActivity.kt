@@ -62,6 +62,5 @@ class VerifyActivity : AppCompatActivity() {
             btnVerify.text="Confirm"
             window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
         }
-
     }
 }

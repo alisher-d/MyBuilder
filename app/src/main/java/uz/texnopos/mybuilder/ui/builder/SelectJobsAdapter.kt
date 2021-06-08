@@ -4,7 +4,6 @@ package uz.texnopos.mybuilder.ui.builder
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import uz.texnopos.mybuilder.JobsModel
 import uz.texnopos.mybuilder.databinding.SelectableJobItemCheckboxBinding
 import uz.texnopos.mybuilder.toast
 
@@ -12,49 +11,52 @@ class SelectJobsAdapter : RecyclerView.Adapter<SelectJobsAdapter.ItemViewHolder>
     private var count =0
     inner class ItemViewHolder(var binding: SelectableJobItemCheckboxBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun populatModel(job: JobsModel) {
+        fun populatModel(job: String,position: Int) {
             val item = binding.jobName
-            item.text = job.jobName
-            item.isChecked=job.checkable
+            item.text = job
+//            item.isChecked=job.checkable
+            if (remoteModels.contains(job)) item.isChecked=true
             item.setOnCheckedChangeListener { buttonView, isChecked ->
                 if (isChecked) {
-                    job.checkable = true
                     count++
+                    remoteModels.add(models[position])
                 } else {
-                    job.checkable = false
                     count--
+                    remoteModels.remove(models[position])
                 }
                 if (count > 6) {
                     "Maximum 6".toast(item.context)
                     buttonView.isChecked = false
                     count--
-                    job.checkable = false
+                    remoteModels.remove(models[position])
                 }
-                onClick.invoke(job, isChecked)
+                onClick.invoke(job)
             }
 
         }
     }
 
-    var onClick: (model: JobsModel, isChecked: Boolean) -> Unit =
-        { model: JobsModel, isChecked: Boolean ->
+    var onClick: (model: String,) -> Unit =
+        { model: String ->
 
         }
 
-    fun onItemClickListener(onClick: (model: JobsModel, isChecked: Boolean) -> Unit) {
+    fun onItemClickListener(onClick: (model: String) -> Unit) {
         this.onClick = onClick
     }
 
-    var models = mutableListOf<JobsModel>()
+    var models = mutableListOf<String>()
+    var remoteModels= arrayListOf<String>()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        count = 0
+        count = remoteModels.size
         val binding = SelectableJobItemCheckboxBinding
             .inflate(LayoutInflater.from(parent.context), parent, false)
         return ItemViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        holder.populatModel(models[position])
+        holder.populatModel(models[position],position)
     }
 
     override fun getItemCount() = models.size

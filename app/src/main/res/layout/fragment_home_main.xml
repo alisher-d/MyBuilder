@@ -70,11 +70,10 @@
                             android:weightSum="3">
 
                             <TextView
-                                android:id="@+id/etFirstName"
+                                android:id="@+id/tvUserName"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Alisher Kazakbaev"
                                 android:textColor="@color/black"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
@@ -84,7 +83,6 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="alisherqazaqbaev@gmail.com"
                                 android:textSize="16sp" />
 
                             <TextView
@@ -92,7 +90,6 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="+998972202156"
                                 android:textSize="16sp" />
                         </LinearLayout>
 

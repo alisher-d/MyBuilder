@@ -13,6 +13,7 @@ import uz.texnopos.mybuilder.R
 import uz.texnopos.mybuilder.databinding.FragmentUsernameBinding
 import uz.texnopos.mybuilder.toast
 import uz.texnopos.mybuilder.ui.builder.BuilderModel
+import uz.texnopos.mybuilder.ui.builder.UserModel
 
 class UsernameFragment : Fragment(R.layout.fragment_username) {
     lateinit var binding: FragmentUsernameBinding
@@ -34,7 +35,7 @@ class UsernameFragment : Fragment(R.layout.fragment_username) {
         navController = Navigation.findNavController(view)
         btnContinue.setOnClickListener {
             loading.visibility = View.VISIBLE
-            val map = BuilderModel()
+            val map = UserModel()
             map.firstName=etFirstName.text.toString()
             map.lastName=etLastname.text.toString()
             map.birthday=etBirthday.text.toString()

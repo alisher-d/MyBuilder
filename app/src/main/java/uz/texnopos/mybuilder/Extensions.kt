@@ -15,7 +15,7 @@ fun String?.toast(context: Context?){
 //import androidx.appcompat.app.AlertDialog
 //import androidx.appcompat.app.AppCompatActivity
 //import androidx.core.view.isVisible
-//import uz.texnopos.mybuilder.JobsModel
+//import uz.texnopos.mybuilder.ui.builder.JobsModel
 //import uz.texnopos.mybuilder.R
 //import uz.texnopos.mybuilder.data.FirebaseHelper
 //import uz.texnopos.mybuilder.databinding.ActivityCreateRezyumeBinding

@@ -1,5 +1,6 @@
 package uz.texnopos.mybuilder
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -28,5 +29,9 @@ class MainActivity : AppCompatActivity() {
 //            auth.signOut()
 //        }
         super.onBackPressed()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
     }
 }

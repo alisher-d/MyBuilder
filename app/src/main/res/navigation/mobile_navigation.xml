@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_login"
-        android:name="uz.texnopos.mybuilder.ui.profile.LoginFragment"
+        android:name="uz.texnopos.mybuilder.ui.profile.login.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
