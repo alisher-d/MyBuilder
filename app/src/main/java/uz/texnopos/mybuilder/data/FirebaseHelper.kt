@@ -7,6 +7,9 @@ import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import uz.texnopos.mybuilder.Constants.SharedPref.HAS_USERNAME
+import uz.texnopos.mybuilder.Constants.SharedPref.IS_LOGGED_IN
+import uz.texnopos.mybuilder.getSharedPreferences
 import uz.texnopos.mybuilder.ui.builder.BuilderModel
 import uz.texnopos.mybuilder.ui.builder.UserModel
 import java.util.concurrent.TimeUnit
@@ -80,8 +83,10 @@ class FirebaseHelper {
             .addOnCompleteListener {
                 if (!it.result!!.exists()) {
                     entered.invoke(false)
+                    getSharedPreferences().setValue("succes",-1)
                 } else {
                     entered.invoke(true)
+                    getSharedPreferences().setValue("succes",1)
                 }
             }
     }
@@ -105,5 +110,6 @@ class FirebaseHelper {
     ) {
         if (auth.currentUser != null) onSucces(true)
         else onSucces(false)
+
     }
 }

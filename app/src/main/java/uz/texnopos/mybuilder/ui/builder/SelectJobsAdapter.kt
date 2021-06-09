@@ -25,7 +25,7 @@ class SelectJobsAdapter : RecyclerView.Adapter<SelectJobsAdapter.ItemViewHolder>
                     remoteModels.remove(models[position])
                 }
                 if (count > 6) {
-                    "Maximum 6".toast(item.context)
+                    item.context.toast("Maximum 6")
                     buttonView.isChecked = false
                     count--
                     remoteModels.remove(models[position])

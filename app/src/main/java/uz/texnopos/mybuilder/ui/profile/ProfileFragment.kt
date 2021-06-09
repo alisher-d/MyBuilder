@@ -5,20 +5,18 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
-import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import uz.texnopos.mybuilder.ui.builder.BuilderActivity
+import uz.texnopos.mybuilder.Constants.SharedPref.IS_LOGGED_IN
 import uz.texnopos.mybuilder.R
 import uz.texnopos.mybuilder.databinding.FragmentProfileBinding
-import uz.texnopos.mybuilder.ui.builder.BuilderModel
+import uz.texnopos.mybuilder.getSharedPreferences
+import uz.texnopos.mybuilder.onClick
+import uz.texnopos.mybuilder.ui.builder.BuilderActivity
 
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
@@ -33,38 +31,38 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         navController = Navigation.findNavController(view)
         binding = FragmentProfileBinding.bind(view)
         etUsername = binding.etFirstName
-        val tvEmail=binding.tvEmail
-        val tvPhone=binding.tvPhone
+        val tvEmail = binding.tvEmail
+        val tvPhone = binding.tvPhone
         val signout = binding.signout
         val btnCreateCv = binding.createCV
-        val createNew=binding.createNew
-        preferences=requireActivity().getSharedPreferences("username", Activity.MODE_PRIVATE)
+        val createNew = binding.createNew
+        preferences = requireActivity().getSharedPreferences("username", Activity.MODE_PRIVATE)
 
         db.collection("builders").document(mAuth.currentUser!!.uid).get()
             .addOnCompleteListener {
-                if (it.result!!.exists()){
-                    btnCreateCv.visibility=View.VISIBLE
-                    createNew.visibility=View.GONE
-                }
-                else{
-                    btnCreateCv.visibility=View.INVISIBLE
-                    createNew.visibility=View.VISIBLE
+                if (it.result!!.exists()) {
+                    btnCreateCv.visibility = View.VISIBLE
+                    createNew.visibility = View.GONE
+                } else {
+                    btnCreateCv.visibility = View.INVISIBLE
+                    createNew.visibility = View.VISIBLE
                 }
             }
-        createNew.setOnClickListener {
-        val intent=Intent(context, BuilderActivity::class.java)
+        createNew.onClick {
+            val intent = Intent(context, BuilderActivity::class.java)
             startActivity(intent)
         }
         db.collection("users").document(mAuth.currentUser!!.uid).get()
             .addOnSuccessListener {
-                etUsername.text = "${it.get("firstName").toString()} ${it.get("lastName").toString()}"
-                tvEmail.text=it.get("email").toString()
-                tvPhone.text=it.get("phone").toString()
+                etUsername.text =
+                    "${it.get("firstName").toString()} ${it.get("lastName").toString()}"
+                tvEmail.text = it.get("email").toString()
+                tvPhone.text = it.get("phone").toString()
             }
 
-        signout.setOnClickListener {
+        signout.onClick {
             mAuth.signOut()
-            preferences.edit().putBoolean("checked",true).apply()
+            getSharedPreferences().removeKey("succes")
             navController.navigate(R.id.action_navigation_profile_to_navigation_login)
         }
     }

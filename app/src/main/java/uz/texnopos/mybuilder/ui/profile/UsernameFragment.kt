@@ -9,10 +9,8 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import uz.texnopos.mybuilder.R
+import uz.texnopos.mybuilder.*
 import uz.texnopos.mybuilder.databinding.FragmentUsernameBinding
-import uz.texnopos.mybuilder.toast
-import uz.texnopos.mybuilder.ui.builder.BuilderModel
 import uz.texnopos.mybuilder.ui.builder.UserModel
 
 class UsernameFragment : Fragment(R.layout.fragment_username) {
@@ -33,12 +31,12 @@ class UsernameFragment : Fragment(R.layout.fragment_username) {
         val btnContinue=binding.btnContinue
         val loading=binding.loading
         navController = Navigation.findNavController(view)
-        btnContinue.setOnClickListener {
+        btnContinue.onClick {
             loading.visibility = View.VISIBLE
             val map = UserModel()
-            map.firstName=etFirstName.text.toString()
-            map.lastName=etLastname.text.toString()
-            map.birthday=etBirthday.text.toString()
+            map.firstName=etFirstName.textToString()
+            map.lastName=etLastname.textToString()
+            map.birthday=etBirthday.textToString()
             map.phone=auth.currentUser!!.phoneNumber.toString()
             map.email=auth.currentUser!!.email.toString()
             db.collection("users").document(auth.currentUser!!.uid)
@@ -46,10 +44,11 @@ class UsernameFragment : Fragment(R.layout.fragment_username) {
                 .addOnCompleteListener {
                     loading.visibility=View.GONE
                     if (it.isSuccessful) {
-                        preferences.edit().putBoolean("checked", false).apply()
+
+                       getSharedPreferences().setValue("succes",1)
                         navController.navigate(R.id.action_navigation_username_to_navigation_profile)
                     } else {
-                        it.exception?.message.toast(context)
+                        toast(it.exception?.message!!)
                     }
                 }
         }

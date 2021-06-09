@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import uz.texnopos.mybuilder.R
 import uz.texnopos.mybuilder.databinding.FragmentHomeMainBinding
+import uz.texnopos.mybuilder.onClick
 import uz.texnopos.mybuilder.ui.builder.BuilderModel
 
 
@@ -31,20 +32,21 @@ class HomeMainFragment : Fragment(R.layout.fragment_home_main), HomeMainView {
             this@HomeMainFragment.editProfession = this.editProfession
             this@HomeMainFragment.editYourself = this.editYourself
         }
-        tvUserName=binding.tvUserName
-        tvPhone=binding.tvPhone
-        tvEmail=binding.tvEmail
+        tvUserName = binding.tvUserName
+        tvPhone = binding.tvPhone
+        tvEmail = binding.tvEmail
         presenter.getUserData()
-        editPersonalInfo.setOnClickListener {
+
+        editPersonalInfo.onClick {
             navController.navigate(R.id.action_homeMainFragment_to_personalInfoFragment)
         }
-        editProfession.setOnClickListener {
+        editProfession.onClick {
             navController.navigate(R.id.action_homeMainFragment_to_professionFragment)
         }
-        editAddress.setOnClickListener {
+        editAddress.onClick {
             navController.navigate(R.id.action_homeMainFragment_to_addressFragment)
         }
-        editYourself.setOnClickListener {
+        editYourself.onClick {
             navController.navigate(R.id.action_homeMainFragment_to_selfFragment)
         }
     }
@@ -59,9 +61,9 @@ class HomeMainFragment : Fragment(R.layout.fragment_home_main), HomeMainView {
     ) {
         tvUserName.text = "$firstName $lastName"
         if (phone != null) tvPhone.text = phone
-        else tvPhone.visibility=View.GONE
-        if (email!=null) tvEmail.text = email
-        else tvEmail.visibility=View.GONE
+        else tvPhone.visibility = View.GONE
+        if (email != null) tvEmail.text = email
+        else tvEmail.visibility = View.GONE
     }
 
     override fun showMessage(message: String?) {

@@ -33,9 +33,7 @@ class LoginPresenter(val view: LoginView) {
         callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-                dbHelper.checkUsername {
-                    view.hasUsername(it)
-                }
+               updateUI()
             }
 
             override fun onVerificationFailed(e: FirebaseException) {

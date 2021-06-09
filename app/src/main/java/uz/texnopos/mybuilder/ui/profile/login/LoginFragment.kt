@@ -24,10 +24,11 @@ import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import uz.texnopos.mybuilder.R
+import uz.texnopos.mybuilder.*
+import uz.texnopos.mybuilder.Constants.SharedPref.HAS_USERNAME
+import uz.texnopos.mybuilder.Constants.SharedPref.IS_LOGGED_IN
 import uz.texnopos.mybuilder.data.FirebaseHelper
 import uz.texnopos.mybuilder.databinding.FragmentLoginBinding
-import uz.texnopos.mybuilder.toast
 import uz.texnopos.mybuilder.ui.profile.VerifyActivity
 
 
@@ -55,6 +56,7 @@ class LoginFragment : Fragment(R.layout.fragment_login), LoginView {
         etPhone = binding.etPhone
         btnLogin = binding.btnLogin
         inputEmail = binding.inputEmail
+
         val googleLogin = binding.googleLogin
 
         etPhone.doOnTextChanged { text, _, _, _ ->
@@ -69,15 +71,20 @@ class LoginFragment : Fragment(R.layout.fragment_login), LoginView {
                 }
             }
         }
-        btnLogin.setOnClickListener {
+        btnLogin.onClick {
             btnLogin.text = "Sending..."
             val number = etPhone.text.toString().trim()
             presenter.sendVerificationcode(requireActivity(), "+998$number")
         }
         presenter.callback()
-        googleLogin.setOnClickListener {
+        googleLogin.onClick {
             googleSignIn()
         }
+    }
+
+    override fun onStart() {
+        presenter.updateUI()
+        super.onStart()
     }
     private fun googleSignIn() {
         presenter.loading(true)
@@ -90,11 +97,6 @@ class LoginFragment : Fragment(R.layout.fragment_login), LoginView {
         startActivityForResult(signInIntent, RC_SIGN_IN)
 
     }
-    override fun onStart() {
-        presenter.updateUI()
-        super.onStart()
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
@@ -107,7 +109,7 @@ class LoginFragment : Fragment(R.layout.fragment_login), LoginView {
                 presenter.firebaseAuthWithGoogle(account.idToken!!)
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
-                Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
+               toast(e.message!!)
                 Log.w(TAG, "Google sign in failed", e)
             }
         }
@@ -115,13 +117,12 @@ class LoginFragment : Fragment(R.layout.fragment_login), LoginView {
 
 
     override fun showMessage(message: String?) {
-        message.toast(context)
+       toast(message!!)
     }
 
     override fun hasUsername(hasUsername: Boolean) {
         if (hasUsername) {
-            presenter.updateUI()
-            preferences.edit().putBoolean("checked", false).apply()
+            navController.navigate(R.id.action_navigation_login_to_navigation_profile)
         }
         else {
             navController.navigate(R.id.action_navigation_login_to_navigation_username)
@@ -155,16 +156,16 @@ class LoginFragment : Fragment(R.layout.fragment_login), LoginView {
 
     override fun updateUI(succes: Boolean) {
         if (succes){
-            if (preferences.getBoolean("checked", true)){
+            if (getSharedPreferences().getIntValue("succes",0)==0){
                 presenter.checkUsername()
-                presenter.loading(false)
             }
-            else {
+            else if (getSharedPreferences().getIntValue("succes",1)==1){
                 navController.navigate(R.id.action_navigation_login_to_navigation_profile)
-                presenter.loading(false)
+            }
+            else if (getSharedPreferences().getIntValue("succes",-1)==-1){
+                navController.navigate(R.id.action_navigation_login_to_navigation_username)
             }
         }
-
     }
 }
 

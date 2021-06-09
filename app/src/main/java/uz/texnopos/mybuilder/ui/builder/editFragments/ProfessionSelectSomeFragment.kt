@@ -7,6 +7,7 @@ import androidx.navigation.Navigation
 import uz.texnopos.mybuilder.ui.builder.JobsModel
 import uz.texnopos.mybuilder.R
 import uz.texnopos.mybuilder.databinding.FragmentProfessionSelectSomeBinding
+import uz.texnopos.mybuilder.onClick
 import uz.texnopos.mybuilder.ui.builder.SelectJobsAdapter
 
 
@@ -20,7 +21,7 @@ class ProfessionSelectSomeFragment : Fragment(R.layout.fragment_profession_selec
         val jobList = binding.jobsList
         jobList.adapter = adapter
         setData()
-        binding.next.setOnClickListener {
+        binding.next.onClick {
             val bundle=Bundle()
             bundle.putStringArrayList("jobs",adapter.remoteModels)
             navController.navigate(R.id.action_professionFragment_to_professionSelectOneFragment,bundle)

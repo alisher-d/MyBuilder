@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.textfield.TextInputEditText
 import uz.texnopos.mybuilder.R
 import uz.texnopos.mybuilder.databinding.FragmentPersonalInfoBinding
+import uz.texnopos.mybuilder.onClick
+import uz.texnopos.mybuilder.textToString
 import uz.texnopos.mybuilder.toast
 import uz.texnopos.mybuilder.ui.builder.UserModel
 
@@ -28,12 +30,12 @@ class PersonalInfoFragment : Fragment(R.layout.fragment_personal_info), Personal
         etEmail = binding.etEmail
         btnSave = binding.btnSave
         presenter.getData()
-        btnSave.setOnClickListener {
+        btnSave.onClick {
             val user = UserModel()
-            user.firstName = etFirstName.text.toString()
-            user.lastName = etLastName.text.toString()
-            user.phone = etPhone.text.toString()
-            user.email = etEmail.text.toString()
+            user.firstName = etFirstName.textToString()
+            user.lastName = etLastName.textToString()
+            user.phone = etPhone.textToString()
+            user.email = etEmail.textToString()
             presenter.setData(user)
         }
 
@@ -53,7 +55,7 @@ class PersonalInfoFragment : Fragment(R.layout.fragment_personal_info), Personal
     }
 
     override fun showMessage(message: String?) {
-        message.toast(context)
+        toast(message!!)
     }
 
 }

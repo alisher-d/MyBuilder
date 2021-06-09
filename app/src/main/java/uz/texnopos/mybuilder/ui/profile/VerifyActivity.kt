@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import uz.texnopos.mybuilder.databinding.ActivityVerifyBinding
+import uz.texnopos.mybuilder.toast
 
 class VerifyActivity : AppCompatActivity() {
     val auth = FirebaseAuth.getInstance()
@@ -42,7 +43,7 @@ class VerifyActivity : AppCompatActivity() {
                             finish()
                         } else {
                             if (task.exception is FirebaseAuthInvalidCredentialsException) {
-                                Toast.makeText(this, "Invalid OTP", Toast.LENGTH_SHORT).show()
+                                toast("Invalid OTP")
                             }
                         }
                     }
