@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import uz.texnopos.mybuilder.R
 import uz.texnopos.mybuilder.databinding.SelectableJobItemRadiobuttonBinding
 
-class SingleSelectJobsAdapter : RecyclerView.Adapter<SingleSelectJobsAdapter.ItemViewHolder>() {
+class SelectSingleAdapter : RecyclerView.Adapter<SelectSingleAdapter.ItemViewHolder>() {
     private var lastChecked: TextView? = null
 
     inner class ItemViewHolder(var binding: SelectableJobItemRadiobuttonBinding) :
@@ -18,6 +18,7 @@ class SingleSelectJobsAdapter : RecyclerView.Adapter<SingleSelectJobsAdapter.Ite
             item.text = job
             if (position == 0) lastChecked = item
             item.setOnClickListener {
+                onClick.invoke(job)
                 lastChecked!!.setBackgroundResource(0)
                 item.setBackgroundResource(R.color.title)
                 lastChecked = it as TextView
@@ -25,16 +26,18 @@ class SingleSelectJobsAdapter : RecyclerView.Adapter<SingleSelectJobsAdapter.Ite
         }
     }
 
-    var onClick: (model: JobsModel, isChecked: Boolean) -> Unit =
-        { model: JobsModel, isChecked: Boolean ->
+    var onClick: (job:String) -> Unit ={
 
-        }
-
-    fun onItemClickListener(onClick: (model: JobsModel, isChecked: Boolean) -> Unit) {
-        this.onClick = onClick
     }
+       fun onItemClickListener(onClick: (job:String) -> Unit){
+           this.onClick=onClick
+       }
 
     var models = mutableListOf<String>()
+    set(value) {
+        field=value
+        notifyDataSetChanged()
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val binding = SelectableJobItemRadiobuttonBinding
             .inflate(LayoutInflater.from(parent.context), parent, false)

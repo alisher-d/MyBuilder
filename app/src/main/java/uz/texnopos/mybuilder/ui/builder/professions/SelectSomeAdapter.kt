@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import uz.texnopos.mybuilder.databinding.SelectableJobItemCheckboxBinding
 import uz.texnopos.mybuilder.toast
 
-class SelectJobsAdapter : RecyclerView.Adapter<SelectJobsAdapter.ItemViewHolder>() {
+class SelectSomeAdapter : RecyclerView.Adapter<SelectSomeAdapter.ItemViewHolder>() {
     private var count =0
     inner class ItemViewHolder(var binding: SelectableJobItemCheckboxBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -46,6 +46,10 @@ class SelectJobsAdapter : RecyclerView.Adapter<SelectJobsAdapter.ItemViewHolder>
     }
 
     var models = mutableListOf<String>()
+    set(value) {
+        field=value
+        notifyDataSetChanged()
+    }
     var remoteModels= arrayListOf<String>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {

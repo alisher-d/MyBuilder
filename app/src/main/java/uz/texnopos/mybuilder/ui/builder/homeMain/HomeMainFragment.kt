@@ -51,10 +51,11 @@ class HomeMainFragment : Fragment(R.layout.fragment_home_main), HomeMainView {
         }
     }
 
+
+
     override fun userData(
         firstName: String,
         lastName: String,
-        birthday: String,
         phone: String?,
         email: String?,
         builderCv: BuilderModel?
