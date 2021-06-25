@@ -1,57 +1,74 @@
 package uz.texnopos.mybuilder.ui.profile
 
-import android.app.Activity
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import uz.texnopos.mybuilder.*
+import uz.texnopos.mybuilder.data.FirebaseHelper
 import uz.texnopos.mybuilder.databinding.FragmentUsernameBinding
-import uz.texnopos.mybuilder.ui.builder.UserModel
+import uz.texnopos.mybuilder.models.BuilderModel
+import uz.texnopos.mybuilder.models.UserModel
 
-class UsernameFragment : Fragment(R.layout.fragment_username) {
-    lateinit var binding: FragmentUsernameBinding
-    private val auth = FirebaseAuth.getInstance()
-    private val db = FirebaseFirestore.getInstance()
-    lateinit var preferences: SharedPreferences
+class UsernameFragment : BaseFragment(R.layout.fragment_username) {
+    lateinit var bind: FragmentUsernameBinding
+    private val currentUser = FirebaseAuth.getInstance().currentUser!!
     lateinit var navController: NavController
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentUsernameBinding.bind(view)
-        preferences = requireActivity().getSharedPreferences("username", Activity.MODE_PRIVATE)
-       val etFirstName=binding.etFirstName
-        val etLastname=binding.etLastName
-        val etBirthday=binding.etBirthday
-        val etPhone=binding.etPhone
-        val etEmail=binding.etEmail
-        val btnContinue=binding.btnContinue
-        val loading=binding.loading
-        navController = Navigation.findNavController(view)
-        btnContinue.onClick {
-            loading.visibility = View.VISIBLE
-            val map = UserModel()
-            map.firstName=etFirstName.textToString()
-            map.lastName=etLastname.textToString()
-            map.birthday=etBirthday.textToString()
-            map.phone=auth.currentUser!!.phoneNumber.toString()
-            map.email=auth.currentUser!!.email.toString()
-            db.collection("users").document(auth.currentUser!!.uid)
-                .set(map)
-                .addOnCompleteListener {
-                    loading.visibility=View.GONE
-                    if (it.isSuccessful) {
+        bind = FragmentUsernameBinding.bind(view)
+        bind.apply {
+            val displayName = if (currentUser.displayName != null)
+                currentUser.displayName
+            else ""
+            etFullName.setText(displayName)
+            etPhone.setText(currentUser.phoneNumber ?: "")
+            etEmail.setText(currentUser.email ?: "")
+            navController = Navigation.findNavController(view)
 
-                       getSharedPreferences().setValue("succes",1)
-                        navController.navigate(R.id.action_navigation_username_to_navigation_profile)
-                    } else {
-                        toast(it.exception?.message!!)
-                    }
+            btnContinue.onClick {
+                if (validate()) {
+                    showProgress()
+                    val user = UserModel()
+                    user.fullName = etFullName.textToString()
+                    user.phone = etPhone.textToString()
+                    user.email = etEmail.textToString()
+                    FirebaseHelper().setUserData(user,
+                        {
+                            hideProgress()
+                            getSharedPreferences().setValue("succes", 1)
+                            navController.navigate(R.id.action_navigation_username_to_navigation_profile)
+
+                        }, {
+                            hideProgress()
+                            toast(it!!)
+                        })
                 }
+            }
         }
+    }
+    private fun validate(): Boolean {
+        return when {
+            bind.etFullName.checkIsEmpty() -> {
+                bind.etFullName.showError("Field Required")
+                false
+            }
+            bind.etPhone.checkIsEmpty() -> {
+                bind.etPhone.showError("Field Required")
+                false
+            }
+            bind.etEmail.checkIsEmpty() -> {
+                bind.etEmail.showError("Field Required")
+                false
+            }
+            else -> true
 
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        (activity as MainActivity).navView.visibility=View.GONE
     }
 }

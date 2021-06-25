@@ -1,9 +1,7 @@
-package uz.texnopos.mybuilder.ui.builder
+package uz.texnopos.mybuilder.models
 
 data class UserModel(
-    var firstName: String ="",
-    var lastName: String ="",
+    var fullName: String ="",
     var phone: String ="",
     var email: String ="",
-    var builderCv:BuilderModel=BuilderModel()
 )

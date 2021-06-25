@@ -1,4 +1,4 @@
-package uz.texnopos.mybuilder.ui.builder.editFragments.personalInfo
+package uz.texnopos.mybuilder.ui.builder.personalInfo
 
 
 interface PersonalInfoView {

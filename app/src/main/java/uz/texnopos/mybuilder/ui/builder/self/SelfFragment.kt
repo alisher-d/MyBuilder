@@ -1,9 +1,56 @@
-package uz.texnopos.mybuilder.ui.builder.editFragments
+package uz.texnopos.mybuilder.ui.builder.self
 
-import androidx.fragment.app.Fragment
-import uz.texnopos.mybuilder.R
+import android.os.Bundle
+import android.view.View
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import uz.texnopos.mybuilder.*
+import uz.texnopos.mybuilder.data.FirebaseHelper
+import uz.texnopos.mybuilder.databinding.FragmentSelfBinding
 
 
-class SelfFragment : Fragment(R.layout.fragment_self) {
+class SelfFragment : BaseFragment(R.layout.fragment_self) {
+    private lateinit var bind: FragmentSelfBinding
+    private lateinit var navController: NavController
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        bind = FragmentSelfBinding.bind(view)
+        navController = Navigation.findNavController(view)
+        bind.apply {
+            etDescription.setText(getDescription())
+            btnSave.onClick {
+                if (isNetworkAvailable()) {
+                    if (validate()) {
+                        hideSoftKeyboard()
+                        showProgress()
+                        FirebaseHelper().updateBuilderDescription(etDescription.textToString(),
+                            {
+                                hideProgress()
+                                toast(it!!)
+                                navController.navigate(R.id.action_selfFragment_to_homeMainFragment)
+                            }, {
+                                hideProgress()
+                                toast(it!!)
+                            }
+                        )
 
+                    }
+                }
+            }
+        }
+    }
+
+    fun validate(): Boolean {
+        return when {
+            bind.etDescription.checkIsEmpty() -> {
+                bind.etDescription.showError("Field Required")
+                false
+            }
+            bind.etDescription.textToString().length<100->{
+                bind.etDescription.showError("Minimum 100 chars")
+                false
+            }
+            else -> true
+        }
+    }
 }

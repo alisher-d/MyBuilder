@@ -29,17 +29,19 @@
 
 
             <LinearLayout
-                android:id="@+id/edit_personal_info"
+                android:id="@+id/ln1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/edit_personal_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/title"
                     android:padding="8dp"
-                    android:text="Personal information" />
+                    android:text="Personal information"
+                    app:drawableEndCompat="@drawable/pen_24" />
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -98,29 +100,33 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/edit_profession"
+                android:id="@+id/ln2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <TextView
+                    android:id="@+id/edit_profession"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/title"
                     android:padding="8dp"
-                    android:text="Your profession" />
+                    android:text="Your profession"
+                    app:drawableEndCompat="@drawable/pen_24" />
 
                 <TextView
+                    android:id="@+id/tvProfession"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
-                    android:text="Architector"
+                    android:text=""
                     android:textColor="@color/black"
                     android:textSize="20sp" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/edit_address"
+                android:id="@+id/add_profession"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -128,11 +134,31 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/title"
+                    android:gravity="center_vertical"
                     android:padding="8dp"
-                    android:text="Address" />
+                    android:text="add a profession"
+                    android:textAllCaps="true"
+                    app:drawableStartCompat="@drawable/add_24" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ln3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <TextView
+                    android:id="@+id/edit_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/title"
+                    android:padding="8dp"
+                    android:text="Address"
+                    app:drawableEndCompat="@drawable/pen_24" />
+
+                <TextView
+                    android:id="@+id/tvAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
@@ -140,31 +166,48 @@
                     android:textColor="@color/black"
                     android:textSize="20sp" />
             </LinearLayout>
-
             <LinearLayout
-                android:id="@+id/edit_yourself"
+                android:id="@+id/add_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="8dp"
+                    android:text="add a address"
+                    android:textAllCaps="true"
+                    app:drawableStartCompat="@drawable/add_24" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ln4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
 
                 <TextView
+                    android:id="@+id/edit_yourself"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/title"
                     android:padding="8dp"
-                    android:text="About yourself" />
+                    android:text="About yourself"
+                    app:drawableEndCompat="@drawable/pen_24" />
 
                 <TextView
+                    android:id="@+id/tvDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
-                    android:text="@string/descr"
                     android:textColor="@color/black"
+                    android:layout_marginHorizontal="8dp"
                     android:textSize="20sp" />
             </LinearLayout>
-
             <LinearLayout
+                android:id="@+id/add_yourself"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -172,9 +215,27 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="8dp"
+                    android:text="add information about yourself"
+                    android:textAllCaps="true"
+                    app:drawableStartCompat="@drawable/add_24" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ln5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/edit_portfolio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:background="@color/title"
                     android:padding="8dp"
-                    android:text="Portfolio" />
+                    android:text="Portfolio"
+                    app:drawableEndCompat="@drawable/pen_24" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
@@ -184,6 +245,21 @@
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/add_portfolio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="8dp"
+                    android:text="add a portfolio"
+                    android:textAllCaps="true"
+                    app:drawableStartCompat="@drawable/add_24" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

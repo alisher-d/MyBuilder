@@ -1,4 +1,4 @@
-package uz.texnopos.mybuilder.ui.builder
+package uz.texnopos.mybuilder.ui.builder.professions
 
 
 import android.view.LayoutInflater
@@ -7,6 +7,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import uz.texnopos.mybuilder.R
 import uz.texnopos.mybuilder.databinding.SelectableJobItemRadiobuttonBinding
+import uz.texnopos.mybuilder.getProfession
+import uz.texnopos.mybuilder.getSelectableJobs
+import uz.texnopos.mybuilder.onClick
 
 class SelectSingleAdapter : RecyclerView.Adapter<SelectSingleAdapter.ItemViewHolder>() {
     private var lastChecked: TextView? = null
@@ -16,12 +19,18 @@ class SelectSingleAdapter : RecyclerView.Adapter<SelectSingleAdapter.ItemViewHol
         fun populatModel(job: String, position: Int) {
             val item = binding.jobName
             item.text = job
-            if (position == 0) lastChecked = item
-            item.setOnClickListener {
+            if (position==0) lastChecked=item
+            if (job== getProfession()){
+                item.setBackgroundResource(R.color.title)
+                lastChecked = item
+            }
+
+
+            item.onClick {
                 onClick.invoke(job)
                 lastChecked!!.setBackgroundResource(0)
                 item.setBackgroundResource(R.color.title)
-                lastChecked = it as TextView
+                lastChecked = this
             }
         }
     }

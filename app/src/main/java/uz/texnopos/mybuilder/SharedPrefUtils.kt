@@ -31,6 +31,9 @@ class SharedPrefUtils {
             is Boolean? -> {
                 mSharedPreferencesEditor.putBoolean(key, value!!).apply()
             }
+            is ArrayList<*>->{
+                mSharedPreferencesEditor.putStringSet(key, (value as ArrayList<String>).toSet()).apply()
+            }
         }
     }
 
@@ -48,6 +51,9 @@ class SharedPrefUtils {
 
     fun getBooleanValue(keyFlag: String, defaultValue: Boolean = false): Boolean {
         return mSharedPreferences.getBoolean(keyFlag, defaultValue)
+    }
+    fun getStringSetValue(keyFlag: String,defaultValue: Set<String> = setOf()):Set<String>?{
+        return mSharedPreferences.getStringSet(keyFlag,defaultValue)
     }
 
     fun removeKey(key: String) {

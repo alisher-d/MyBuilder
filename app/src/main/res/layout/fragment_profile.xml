@@ -76,10 +76,10 @@
         android:layout_height="0dp"
         android:orientation="horizontal"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/createCV"
-        app:layout_constraintEnd_toEndOf="@id/createCV"
-        app:layout_constraintStart_toStartOf="@id/createCV"
-        app:layout_constraintTop_toTopOf="@id/createCV">
+        app:layout_constraintBottom_toBottomOf="@id/userCV"
+        app:layout_constraintEnd_toEndOf="@id/userCV"
+        app:layout_constraintStart_toStartOf="@id/userCV"
+        app:layout_constraintTop_toTopOf="@id/userCV">
 
         <TextView
             android:layout_width="0dp"
@@ -94,7 +94,7 @@
             android:layout_weight="1" />
     </LinearLayout>
     <LinearLayout
-        android:id="@+id/createCV"
+        android:id="@+id/userCV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -214,5 +214,5 @@
         android:text="Sign out"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/createCV" />
+        app:layout_constraintTop_toBottomOf="@id/userCV" />
 </androidx.constraintlayout.widget.ConstraintLayout>

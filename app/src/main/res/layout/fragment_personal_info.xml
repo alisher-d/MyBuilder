@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.builder.editFragments.personalInfo.PersonalInfoFragment">
+    tools:context=".ui.builder.personalInfo.PersonalInfoFragment">
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_main"
         android:layout_width="match_parent"
@@ -33,7 +33,7 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputFirstName"
+                android:id="@+id/inputFullName"
                 style="@style/EditTextStyle"
                 android:hint="First name"
                 android:layout_marginTop="8dp"
@@ -42,33 +42,19 @@
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etFirstName"
+                    android:id="@+id/etFullName"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="textPersonName"
                     android:padding="16dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputLastName"
-                style="@style/EditTextStyle"
-                android:hint="Last name"
-                app:endIconDrawable="@drawable/ic_baseline_change_24"
-                app:endIconMode="none"
-                >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etLastName"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="textPersonName"
-                    android:padding="16dp" />
-            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputBirthday"
                 style="@style/EditTextStyle"
                 android:hint="Birthday"
+                android:visibility="gone"
                 app:endIconDrawable="@drawable/ic_baseline_change_24"
                 app:endIconMode="none"
                 >
@@ -93,7 +79,7 @@
                     android:id="@+id/etPhone"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="textPersonName"
+                    android:inputType="phone"
                     android:padding="16dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -109,7 +95,7 @@
                     android:id="@+id/etEmail"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="textPersonName"
+                    android:inputType="textEmailAddress"
                     android:padding="16dp" />
             </com.google.android.material.textfield.TextInputLayout>
 

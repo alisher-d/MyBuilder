@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-<androidx.cardview.widget.CardView
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="2dp"
-    app:cardElevation="0dp"
     app:cardCornerRadius="6dp"
-    app:cardBackgroundColor="#66DBD2ED"
+    app:cardElevation="2dp"
+    app:strokeColor="@color/title"
+    app:strokeWidth="1dp"
+    android:padding="2dp"
+
     >
     <TextView
         android:id="@+id/address"
-        android:layout_margin="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Uzbekistan"
-        android:textSize="18sp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-</androidx.cardview.widget.CardView>
-</LinearLayout>
+        android:layout_margin="8dp"
+        android:text="Job name"
+        android:textSize="18sp" />
+</com.google.android.material.card.MaterialCardView>

@@ -14,33 +14,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="@dimen/spacing_middle"
-        android:layout_marginTop="@dimen/spacing_control_half"
-        android:layout_marginEnd="@dimen/spacing_middle"
-        android:layout_marginBottom="@dimen/spacing_control_half"
+        android:layout_margin="10dp"
         android:backgroundTint="@color/white"
         android:gravity="center"
         android:orientation="vertical">
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:layout_width="@dimen/_60sdp"
-            android:layout_height="@dimen/_60sdp"
-            app:lottie_autoPlay="true"
-            app:lottie_fileName="lottie/loader_2.json"
-            app:lottie_loop="true" />
+        <ProgressBar
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTintMode="src_atop"
+            android:indeterminateTint="@color/black"
+            android:indeterminateTintMode="src_atop" />
 
         <TextView
             android:id="@+id/tv_progress_msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="@dimen/spacing_control"
-            android:paddingStart="@dimen/spacing_control"
-            android:paddingEnd="@dimen/spacing_control"
-            android:text="@string/lbl_loading"
-            android:textAppearance="@style/FontSemiBold"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="@dimen/font_size_small"
+           android:layout_margin="10dp"
+            android:text="Loading..."
+            android:textColor="@color/design_default_color_primary_dark"
             tools:ignore="MissingPrefix" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>
