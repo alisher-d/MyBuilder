@@ -18,29 +18,49 @@
         tools:layout="@layout/fragment_favorite" />
 
     <fragment
-        android:id="@+id/navigation_profile"
-        android:name="uz.texnopos.mybuilder.ui.login.LoginFragment"
-        android:label="@string/title_profile"
-        tools:layout="@layout/fragment_favorite">
-        <action
-            android:id="@+id/action_navigation_profile_to_profileFragment"
-            app:destination="@id/profileFragment"
-            app:popUpTo="@id/navigation_home" />
-    </fragment>
-    <fragment
         android:id="@+id/navigation_information"
         android:name="uz.texnopos.mybuilder.ui.information.InformationFragment"
         android:label="@string/title_information"
-        tools:layout="@layout/fragment_information" />
+        tools:layout="@layout/fragment_information" >
+    </fragment>
     <fragment
-        android:id="@+id/profileFragment"
+        android:id="@+id/navigation_login"
+        android:name="uz.texnopos.mybuilder.ui.profile.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_navigation_login_to_navigation_profile"
+            app:destination="@id/navigation_profile"
+            app:popUpTo="@id/navigation_home" />
+        <action
+            android:id="@+id/action_navigation_login_to_navigation_username"
+            app:destination="@id/navigation_username"
+            app:popUpTo="@id/navigation_home" />
+        <argument
+            android:name="storedVerificationId"
+            app:argType="string"
+           />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_profile"
         android:name="uz.texnopos.mybuilder.ui.profile.ProfileFragment"
-        android:label="fragment_profile"
+        android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile" >
         <action
-            android:id="@+id/action_profileFragment_to_navigation_profile"
-            app:destination="@id/navigation_profile"
-            app:popUpTo="@id/navigation_home"
-            />
+            android:id="@+id/action_navigation_profile_to_navigation_login"
+            app:destination="@id/navigation_login"
+            app:popUpTo="@id/navigation_home" />
     </fragment>
+    <fragment
+        android:id="@+id/navigation_username"
+        android:name="uz.texnopos.mybuilder.ui.profile.UsernameFragment"
+        android:label="fragment_username"
+        tools:layout="@layout/fragment_username" >
+        <action
+            android:id="@+id/action_navigation_username_to_navigation_profile"
+            app:destination="@id/navigation_profile"
+            app:popUpTo="@id/navigation_home" />
+    </fragment>
+
+
 </navigation>
